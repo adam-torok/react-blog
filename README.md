@@ -1,8 +1,11 @@
-# React + Vite
+# Todos 🪄
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[x] Setup project using Vite
+[x] Use Tailwind
+[] Add simple navbar - for viewing and creating blogs.
+[] Research on router like Vue Router but for React
+[] Add alerts if the blog is created, modified or deleted
+[] Add modals for confirmation before destructive actions
+[] Deploy on Netlify
+[] Review
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
