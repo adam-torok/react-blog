@@ -1,55 +1,23 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Shared/Navigation/Navbar';
 import Footer from './Shared/Navigation/Footer';
 import Alert from './Shared/Misc/Alert';
+import Loading from './Shared/Misc/Loading';
 import Index from './Blog/Index';
 import Create from './Blog/Create';
+import useFetch from './useFetch';
 
 function App() {
-	const [blogs, setBlogs] = useState([
-		{
-			id: 1,
-			title: 'Boost your conversion rate',
-			href: '#',
-			description:
-				'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-			date: 'Mar 16, 2020',
-			datetime: '2020-03-16',
-			category: { title: 'Marketing', href: '#' },
-			author: {
-				name: 'Michael Foster',
-				role: 'Co-Founder / CTO',
-				href: '#',
-				imageUrl:
-					'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-			},
-		},
-		{
-			id: 2,
-			title: 'Boost your conversion rate',
-			href: '#',
-			description:
-				'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-			date: 'Mar 16, 2020',
-			datetime: '2020-03-16',
-			category: { title: 'Marketing', href: '#' },
-			author: {
-				name: 'Michael Foster',
-				role: 'Co-Founder / CTO',
-				href: '#',
-				imageUrl:
-					'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-			},
-		},
-	]);
+	const {data, isPending, error } = useFetch('http://localhost:8000/blogs');
 
 	return (
 		<Router>
 			<Navbar />
 			<Alert />
+			{isPending && <Loading />}
+			{error && <p className='text-center mt-5'>{error}</p>}
 			<Routes>
-				<Route path='/' element={<Index blogs={blogs} />}></Route>
+				<Route path='/' element={<Index blogs={data} />}></Route>
 				<Route path='/create' element={<Create />}></Route>
 			</Routes>
 			<Footer />
