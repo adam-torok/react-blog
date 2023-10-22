@@ -1,13 +1,46 @@
 import toast, { Toaster } from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 import Loading from '../Shared/Misc/Loading';
-import useFetch from '../useFetch';
+import Modal from '../Shared/Misc/Modal';
 import Card from './Card';
 
 export default function Index() {
-    const { data, isPending, error } = useFetch('http://localhost:8000/blogs');
+    const [data, setData] = useState([]);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
+    const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [selectedBlog, setSelectedBlog] = useState(null);
 
-    const deleteBlog = (id) => {
-        fetch(`http://localhost:8000/blogs/${id}`, {
+    useEffect(() => {
+        setTimeout(() => {
+            fetchData();
+        }, 500);
+    }, []);
+
+    const fetchData = () => {
+        setTimeout(() => {
+            fetch('http://localhost:8000/blogs')
+                .then((resp) => {
+                    if (!resp.ok) {
+                        setError('❌ Could not fetch the data.');
+                        setIsPending(false);
+                        throw Error('❌ Could not fetch the data.');
+                    }
+                    setError(null);
+                    return resp.json();
+                })
+                .then((data) => {
+                    setData(data);
+                    setIsPending(false);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }, 500);
+    }
+
+    const deleteBlog = () => {
+        fetch(`http://localhost:8000/blogs/${selectedBlog}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         }).then((resp) => {
@@ -24,11 +57,22 @@ export default function Index() {
                 },
             })
 
-            // Why it's not re running? useFetch('http://localhost:8000/blogs');
+            fetchData()
+            hideModal()
 
         }).catch((err) => {
             toast.error(err)
         })
+    }
+
+    const showModal = (id) => {
+        setSelectedBlog(id);
+        setModalIsVisible(true);
+    }
+
+    const hideModal = () => {
+        setSelectedBlog(null);
+        setModalIsVisible(false)
     }
 
     return (
@@ -46,10 +90,11 @@ export default function Index() {
                 </div>
                 <div className='mx-auto mt-3 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-5 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
                     {data.map((blog) => (
-                        <Card onDelete={deleteBlog} blog={blog} key={blog.id} />
+                        <Card onDelete={showModal} blog={blog} key={blog.id} />
                     ))}
                 </div>
             </div>
+            {selectedBlog && <Modal onCancel={hideModal} id={selectedBlog} onAccept={deleteBlog} isVisible={modalIsVisible} />}
         </>
     )
 }
