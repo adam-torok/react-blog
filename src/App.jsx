@@ -9,6 +9,7 @@ import Show from './Blog/Show'
 import Edit from './Blog/Edit'
 import NotFound from './NotFound'
 import Home from './Home'
+import GithubCorner from './Shared/Misc/GithubCorner'
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 			<Navbar />
 			<Alert />
 			<ScrollToTop />
+			<GithubCorner />
 			<Routes>
 				<Route exact path='/' element={<Home />}></Route>
 				<Route exact path='/blogs' element={<Index />}></Route>
