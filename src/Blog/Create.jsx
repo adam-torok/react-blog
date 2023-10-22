@@ -1,22 +1,22 @@
-import { useState } from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import { useState } from "react"
+import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 export default function Create() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [authorName, setAuthorName] = useState('');
-    const [authorRole, setAuthorRole] = useState('');
-    const [content, setContent] = useState('');
-    const [isPending, setIsPending] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const navigate = useNavigate();
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [authorName, setAuthorName] = useState('')
+    const [authorRole, setAuthorRole] = useState('')
+    const [content, setContent] = useState('')
+    const [isPending, setIsPending] = useState(false)
+    const [errors, setErrors] = useState([])
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (validateInputs()) {
-            setIsPending(true);
-            const blog = { title, description, authorName, authorRole, content };
+            setIsPending(true)
+            const blog = { title, description, authorName, authorRole, content }
 
             fetch('http://localhost:8000/blogs', {
                 method: 'POST',
@@ -24,7 +24,7 @@ export default function Create() {
                 body: JSON.stringify(blog)
             }).then(() => {
                 setTimeout(() => {
-                    setIsPending(false);
+                    setIsPending(false)
                     toast('Blog has been created!',
                         {
                             icon: '👏',
@@ -34,14 +34,14 @@ export default function Create() {
                                 color: '#fff',
                             },
                         }
-                    );
+                    )
                     setTimeout(() => {
                         // Bad practice, I only use it for testing
-                        navigate('/');
-                    }, 500);
-                }, 400);
+                        navigate('/')
+                    }, 500)
+                }, 400)
             }).catch((err) => {
-                toast(err);
+                toast(err)
             })
         } else {
             toast.error('Please correct the fields!')
@@ -49,28 +49,28 @@ export default function Create() {
     }
 
     const validateInputs = () => {
-        const errors = {};
+        const errors = {}
 
         if (!title) {
-            errors.title = 'Title is required';
+            errors.title = 'Title is required'
         }
         if (!description) {
-            errors.description = 'Description is required';
+            errors.description = 'Description is required'
         }
         if (!authorName) {
-            errors.authorName = 'Author name is required';
+            errors.authorName = 'Author name is required'
         }
         if (!authorRole) {
-            errors.authorRole = "Author's role is required";
+            errors.authorRole = "Author's role is required"
         }
         if (!content) {
-            errors.content = 'Content is required';
+            errors.content = 'Content is required'
         }
 
-        setErrors(errors);
+        setErrors(errors)
 
         // Return true if there are no errors, indicating the form can be submitted
-        return Object.keys(errors).length === 0;
+        return Object.keys(errors).length === 0
     }
 
     return (

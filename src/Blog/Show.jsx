@@ -1,11 +1,10 @@
-import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/20/solid';
-import useFetch from '../useFetch';
-import { useParams } from 'react-router-dom';
-import Loading from '../Shared/Misc/Loading';
+import useFetch from '../useFetch'
+import { useParams } from 'react-router-dom'
+import Loading from '../Shared/Misc/Loading'
 
 export default function Show() {
-    const { id } = useParams();
-    const { data: blog, isPending, error } = useFetch(`http://localhost:8000/blogs/${id}`);
+    const { id } = useParams()
+    const { data: blog, isPending, error } = useFetch(`http://localhost:8000/blogs/${id}`)
 
     return (
         <>

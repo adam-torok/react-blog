@@ -31,7 +31,7 @@ export default function Alert() {
                     <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
                         <circle cx={1} cy={1} r={1} />
                     </svg>
-                    This project is only for demo purposes (learning React).
+                    This project is only for demo purposes (learning React). <b>DO NOT SHARE ANY DATA IN THE SITE!</b>
                 </p>
             </div>
             <div className="flex flex-1 justify-end">
