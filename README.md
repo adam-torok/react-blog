@@ -11,6 +11,7 @@
     -   [x] Show
     -   [ ] Update
     -   [ ] Delete
+-   [] 404 page
 -   [x] Adding toasts
 -   [x] Add modals for confirmation before destructive actions
 -   [ ] Deploy on Netlify

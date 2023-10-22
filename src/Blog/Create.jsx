@@ -98,7 +98,7 @@ export default function Create() {
             <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
                 <div className="grid gap-y-6">
                     <div className="sm:col-span-2">
-                        <label htmlFor="title" className="block text-sm font-semibold leading-6 text-gray-900">
+                        <label htmlFor="title" className={`block text-sm font-semibold leading-6 text-gray-900 ${errors.title && 'text-red-500'}`}>
                             Blog title
                         </label>
                         <div className="mt-2.5">
@@ -114,7 +114,7 @@ export default function Create() {
                         {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
                     </div>
                     <div className="sm:col-span-2">
-                        <label htmlFor="description" className="block text-sm font-semibold leading-6 text-gray-900">
+                        <label htmlFor="description" className={`block text-sm font-semibold leading-6 text-gray-900 ${errors.title && 'text-red-500'}`}>
                             Blog description
                         </label>
                         <div className="mt-2.5">
@@ -131,7 +131,7 @@ export default function Create() {
 
                     </div>
                     <div className="sm:col-span-2">
-                        <label htmlFor="author-name" className="block text-sm font-semibold leading-6 text-gray-900">
+                        <label htmlFor="author-name" className={`block text-sm font-semibold leading-6 text-gray-900 ${errors.authorNamet && 'text-red-500'}`}>
                             Author
                         </label>
                         <div className="mt-2.5">
@@ -148,7 +148,7 @@ export default function Create() {
 
                     </div>
                     <div className="sm:col-span-2">
-                        <label htmlFor="author-role" className="block text-sm font-semibold leading-6 text-gray-900">
+                        <label htmlFor="author-role" className={`block text-sm font-semibold leading-6 text-gray-900 ${errors.authorRole && 'text-red-500'}`}>
                             Author's role
                         </label>
                         <div className="mt-2.5">
@@ -165,7 +165,7 @@ export default function Create() {
                         {errors.authorRole && <p className="text-red-500 text-sm mt-1">{errors.authorRole}</p>}
                     </div>
                     <div className="sm:col-span-2">
-                        <label htmlFor="content" className="block text-sm font-semibold leading-6 text-gray-900">
+                        <label htmlFor="content" className={`block text-sm font-semibold leading-6 text-gray-900 ${errors.content && 'text-red-500'}`}>
                             Content
                         </label>
                         <div className="mt-2.5">
