@@ -1,11 +1,11 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const navigation = [
-    { name: 'Blogs', href: '/', current: false },
-    { name: 'Create blogs', href: '/create', current: false },
+    { name: 'Home', href: '/', current: false },
+    { name: 'Blogs', href: '/blogs', current: false },
+    { name: 'Create Blogs', href: '/create', current: false },
 ]
 
 function classNames(...classes) {
