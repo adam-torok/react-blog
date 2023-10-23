@@ -32,7 +32,7 @@ export default function Home() {
     -   [x] 404 page
     -   [x] Adding tooltips
     -   [x] Adding toasts
-    -   [] Adding lottie files
+    -   [x] Adding lottie files
     -   [x] Add modals for confirmation before destructive actions
     -   [x] Removing ; from scripts to be unified
     -   [x] Deploy on Netlify
