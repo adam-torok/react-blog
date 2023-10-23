@@ -23,7 +23,7 @@ export default function Card({ blog, onDelete, showActions }) {
                             </Link>
 
                             {showActions && (
-                                <div>
+                                <div className="flex">
                                     <div
                                         data-tooltip-id="blog-actions"
                                         data-tooltip-content="Delete blog"
